@@ -138,6 +138,5 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::resource('logs', 'LogsController')->except(['destroy']);
         // ROUTE TO LOGS INDEX
 
-
     }); // END OF 'DASHBOARD' PREFIX
 });
