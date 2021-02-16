@@ -8,7 +8,7 @@
                     <div class="input-group-prepend"> <span class="input-group-text"> <i class="fa fa-school"></i> </span> </div>
                     <input type="text" class="form-control" name='name' placeholder="@lang('rows.name')" value="{{ $row->name ?? '' }}">
                 </div>
-                <span id="name_{{ $localeCode }}_error" class="red error"></span>
+                <span id="name_error" class="red error"></span>
             </div>
         </div>
     </div>
