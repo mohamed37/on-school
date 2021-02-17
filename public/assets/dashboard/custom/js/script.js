@@ -337,4 +337,17 @@ $(function() {
         $(this).parentsUntil('form-body').find('input[name=code_id]').val(code);
     }); // GET CODE OF ABSENCES DEPENDENT OF ID
 
+    $('body').on('click', '.input-group-prepend', function (e) {
+        let icon = $(this).find('.toggle-password');
+        if (icon.hasClass('toggle-password')) {
+            if (icon.hasClass('fa-eye')) {
+                icon.removeClass('fa-eye').addClass('fa-eye-slash');
+                icon.closest('.input-group').find('input[type=password]').attr('type', 'text');
+            } else {
+                icon.removeClass('fa-eye-slash').addClass('fa-eye');
+                icon.closest('.input-group').find('input[type=text]').attr('type', 'password');
+            }
+        }
+    }); // CHANGE THE TYPE OF INPUT PASSWORD TO TEXT AND BACK AGAIN
+
 }); // end if function jquery

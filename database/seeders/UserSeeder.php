@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             'remember_token'    => Str::random(10),
         ])->attachRole('super_admin');
 
-        for($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             User::create([
                 'username'          => $faker->unique()->name(),
                 'full_name'         => $faker->firstName() . ' ' . $faker->lastName(),

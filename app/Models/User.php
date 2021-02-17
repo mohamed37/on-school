@@ -62,6 +62,16 @@ class User extends Authenticatable
         return $this->hasMany(Subject::class, 'user_id', 'id');
     } // To Return The Relation Between User and Absences
 
+    public function exams()
+    {
+        return $this->hasMany(Exam::class, 'user_id', 'id');
+    } // To Return The Relation Between User and Exams
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class, 'user_id', 'id');
+    } // To Return The Relation Between User and Questions
+
     /*
     *****************************************************************************
     *************************** Begin SCOPE Area ********************************

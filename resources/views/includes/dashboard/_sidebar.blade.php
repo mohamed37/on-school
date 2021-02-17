@@ -32,12 +32,12 @@
             <!-- END PERMISSIONS LINK -->
 
             <!-- BEGIN LOGS LINK -->
-            <li class="nav-item {{ active('logs') }}">
+            {{-- <li class="nav-item {{ active('logs') }}">
                 <a href="{{ route('dashboard.logs.index') }}">
                     <i class="fa fa-eye"></i>
                     <span class="menu-title" data-i18n="nav.invoice.main">@lang('general.logs')</span>
                 </a>
-            </li>
+            </li> --}}
             <!-- END LOGS LINK -->
 
             <!-- BEGIN MANAGMENT LINK -->
@@ -96,13 +96,31 @@
             <!-- END SUBJECTS LINK -->
 
             <!-- BEGIN ROOMS LINK -->
-            <li class="nav-item {{ active('room') }}">
+            <li class="nav-item {{ active('rooms') }}">
                 <a href="{{ route('dashboard.rooms.index') }}">
                     <i class="fa fa-door-closed"></i>
                     <span class="menu-title" data-i18n="nav.invoice.main">@lang('general.rooms')</span>
                 </a>
             </li>
             <!-- END ROOMS LINK -->
+
+            <!-- BEGIN EXAMS LINK -->
+            <li class="nav-item {{ active('exams') }}">
+                <a href="{{ route('dashboard.exams.index') }}">
+                    <i class="fa fa-diagnoses"></i>
+                    <span class="menu-title" data-i18n="nav.invoice.main">@lang('general.exams')</span>
+                </a>
+            </li>
+            <!-- END EXAMS LINK -->
+
+            <!-- BEGIN QUESTIONS LINK -->
+            <li class="nav-item {{ active('questions') }}">
+                <a href="{{ route('dashboard.questions.index') }}">
+                    <i class="fa fa-question"></i>
+                    <span class="menu-title" data-i18n="nav.invoice.main">@lang('general.questions')</span>
+                </a>
+            </li>
+            <!-- END QUESTIONS LINK -->
         </ul>
     </div>
 </div>

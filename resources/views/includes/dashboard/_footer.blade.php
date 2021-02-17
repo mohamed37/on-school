@@ -17,7 +17,6 @@
 <script type="text/javascript" src="{{ path('vendors/js/vendors.min.js') }}"></script>
 <!-- BEGIN VENDOR JS-->
 
-<script type="text/javascript" src="{{ path('js\scripts\fontawesome\js\all.min.js') }}"></script>
 <!-- BEGIN PAGE VENDOR JS-->
 <script type="text/javascript" src="{{ path('vendors/js/extensions/jquery.toolbar.min.js') }}"></script>
 <script type="text/javascript" src="{{ path('vendors/js/forms/icheck/icheck.min.js') }}"></script>
@@ -25,6 +24,7 @@
 <!-- END PAGE VENDOR JS-->
 
 <!-- BEGIN MODERN JS-->
+<script type="text/javascript" src="{{ path('js\scripts\fontawesome\js\all.min.js') }}"></script>
 <script type="text/javascript" src="{{ path('js/core/app-menu.js') }}"></script>
 <script type="text/javascript" src="{{ path('js/core/app.js') }}"></script>
 <script type="text/javascript" src="{{ path('js/scripts/extensions/toolbar.js') }}"></script>

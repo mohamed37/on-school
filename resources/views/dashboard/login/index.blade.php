@@ -28,32 +28,39 @@
                             <form class="" action="{{ route('user.login') }}" method="post">
                                 @csrf
                                 <!-- BEGIN USER NAME INPUT -->
-                                <fieldset class="form-group position-relative has-icon-left mb-0">
-                                    <input type="text" id="name"
-                                        placeholder="@lang('auth.your_name') | @lang('users.email') | @lang('users.phone')"
-                                        name="username"
-                                        class="form-control form-control-lg input-lg @error('username') is-invalid @enderror"
-                                        value="{{ old('username') ?? 'super admin' }}" autofocus required>
-                                    <div class="form-control-position"> <i class="ft-user"></i> </div>
+                                {{-- <fieldset class="form-group position-relative has-icon-left mb-0">
+
+                                </fieldset> --}}
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                        </div>
+                                        <input type="text" id="name" placeholder="@lang('auth.your_name') | @lang('users.email') | @lang('users.phone')"
+                                            name="username" class="form-control @error('username') is-invalid @enderror"
+                                            value="{{ old('username') ?? 'super admin' }}" autofocus required>
+                                    </div>
                                     @error('username')
-                                        <span class="invalid-feedback" role="alert"> <strong> {{ $message }} </strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert"> <strong> {{ $message }} </strong> </span>
                                     @enderror
-                                </fieldset>
+                                </div>
                                 <!-- END USER NAME INPUT -->
 
                                 <!-- BEGIN USER PASSWORD INPUT -->
-                                <fieldset class="form-group position-relative has-icon-left">
-                                    <input type="password" id="password" placeholder="@lang('auth.password')"
-                                        name="password"
-                                        class="form-control form-control-lg input-lg @error('password') is-invalid @enderror"
-                                        value="{{ old('password') ?? 123 }}" required>
-                                    <div class="form-control-position"> <i class="la la-key"></i> </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"> <i class="fas fa-eye toggle-password"></i> </span>
+                                        </div>
+                                        <input type="password" id="password" placeholder="@lang('auth.password')" name="password"
+                                            class="form-control form-control-lg input-lg @error('password') is-invalid @enderror"
+                                            value="{{ old('password') ?? 123 }}" required>
+                                    </div>
                                     @error('password')
-                                        <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert"> <strong> {{ $message }} </strong> </span>
                                     @enderror
-                                </fieldset>
+                                </div>
                                 <!-- END USER PASSWORD INPUT -->
 
                                 <!-- BEGIN REMEMBER ME CHECKBOX -->
@@ -72,7 +79,7 @@
                                 <!-- END REMEMBER ME CHECKBOX  -->
 
                                 <button type="submit" class="btn btn-info btn-block">
-                                    <i class="ft-unlock"></i> @lang('auth.login')
+                                    <i class="fas fa-sign-in-alt"></i> @lang('auth.login')
                                 </button>
                             </form>
                         </div>

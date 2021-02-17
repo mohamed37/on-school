@@ -26,6 +26,11 @@ class Subject extends Model
         return $this->belongsTo(Row::class, 'row_id', 'id');
     } // To Return The Relation Between Subject and User
 
+    public function exams()
+    {
+        return $this->hasMany(Exam::class, 'subject_id', 'id');
+    } // To Return The Relation Between Subject and Exams
+
     /*
     *****************************************************************************
     *************************** Begin SCOPE Area ********************************

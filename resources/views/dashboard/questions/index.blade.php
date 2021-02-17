@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="card">
             @php $options = ['create', 'print', 'import', 'export']; @endphp
             @include('dashboard.includes.card._header')
@@ -17,10 +17,12 @@
                         <thead>
                             <tr>
                                 <th class="remove-when-print"> <input type="checkbox" id="check-all"> </th>
-                                <th data-sort='display_name' data-order='desc'> @lang('subjects.teacher') </th>
-                                <th data-sort='description' data-order='desc'> @lang(getModel() . '.subject') </th>
-                                <th> @lang(getModel() . '.classroom') </th>
-                                <th> @lang(getModel() . '.semester') </th>
+                                <th> @lang('subjects.subject') </th>
+                                <th> @lang(getModel() . '.question') </th>
+                                <th> @lang(getModel() . '.answers') </th>
+                                <th> @lang(getModel() . '.correct') </th>
+                                <th> @lang(getModel() . '.degree') </th>
+                                <th> @lang(getModel() . '.attach') </th>
                                 <th class="remove-when-print"> @lang('general.action') </th>
                             </tr>
                         </thead>
@@ -30,12 +32,13 @@
             </div>
         </div>
     </div>
-
+    {{--
     <div class="col-md-4">
         <div style="position: fixed; width: 25%">
             {{-- Form Create Blade --}}
-            @include('dashboard.includes.form._create')
+            {{-- @include('dashboard.includes.form._create')
         </div>
     </div>
+    --}}
 </div>
 @endsection

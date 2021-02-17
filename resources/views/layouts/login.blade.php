@@ -12,7 +12,7 @@
     <link rel="apple-tou ch-icon" href="{{ asset('assets/dashboard/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/dashboard/images/ico/favicon.ico') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700">
-    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <!-- END PAGE ICON & PAGE FONTS -->
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard/vendors/css/forms/icheck/icheck.css') }}">
@@ -45,7 +45,7 @@
         <!-- END Page Level CSS-->
     @endif
 </head>
-<body class="vertical-layout vertical-menu 1-column   menu-expanded blank-page blank-page"data-open="click" data-menu="vertical-menu" data-col="1-column">
+<body class="vertical-layout vertical-menu 1-column menu-expanded blank-page blank-page"data-open="click" data-menu="vertical-menu" data-col="1-column">
 
     <div class="app-content content">
         <div class="content-wrapper">
@@ -67,10 +67,25 @@
     <!-- BEGIN MODERN JS-->
     <script type="text/javascript" src="{{ asset('assets/dashboard/js/core/app-menu.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/dashboard/js/core/app.js') }}"></script>
+    <script type="text/javascript" src="{{ path('js\scripts\fontawesome\js\all.min.js') }}"></script>
     <!-- END MODERN JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <script type="text/javascript" src="{{ asset('assets/dashboard/js/scripts/forms/form-login-register.js') }}"></script>
     <!-- END PAGE LEVEL JS-->
+
+    <script>
+        $('body').on('click', '.input-group-prepend', function (e) {
+            let icon = $(this).find('.toggle-password');
+            if (icon.hasClass('toggle-password')) {
+                if (icon.hasClass('fa-eye')) {
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash');
+                    icon.closest('.input-group').find('input[type=password]').attr('type', 'text');
+                } else {
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye');
+                    icon.closest('.input-group').find('input[type=text]').attr('type', 'password');
+                }
+            }
+        }); // GET CODE OF ABSENCES DEPENDENT OF ID
+    </script>
 </body>
 </html>
-

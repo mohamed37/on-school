@@ -13,10 +13,8 @@ return [
             'absences'  => 'c,r,u,d',
             'salaries'  => 'c,r,u,d',
         ],
-        'manage' => [
-            'users'     => 'c,r',
-            'absences'  => 'c,r',
-            'salaries'  => 'c,r',
+        'teacher' => [
+            'subject'     => 'c,r,u,d',
         ]
     ],
 

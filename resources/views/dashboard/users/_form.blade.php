@@ -72,7 +72,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        <span class="input-group-text"> <i class="fas fa-eye toggle-password"></i> </span>
                     </div>
                     <input type="password" name="password" class="form-control" placeholder="@lang('users.password')"
                         autocomplete>
@@ -84,7 +84,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        <span class="input-group-text"> <i class="fa fa-eye toggle-password"></i> </span>
                     </div>
                     <input type="password" name="password_confirmation" class="form-control"
                         placeholder="@lang('users.password_confirmation')" autocomplete>

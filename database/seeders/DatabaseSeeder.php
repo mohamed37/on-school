@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RowsSeeder::class);
         $this->call(RoomsSeeder::class);
         $this->call(SubjectsSeeder::class);
+        $this->call(ExamsSeeder::class);
+        $this->call(QuestionsSeeder::class);
     } // end of run
 
 } // end of seeder

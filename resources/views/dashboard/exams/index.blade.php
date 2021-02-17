@@ -17,10 +17,10 @@
                         <thead>
                             <tr>
                                 <th class="remove-when-print"> <input type="checkbox" id="check-all"> </th>
-                                <th data-sort='display_name' data-order='desc'> @lang('subjects.teacher') </th>
-                                <th data-sort='description' data-order='desc'> @lang(getModel() . '.subject') </th>
-                                <th> @lang(getModel() . '.classroom') </th>
-                                <th> @lang(getModel() . '.semester') </th>
+                                <th> @lang('subjects.subject') </th>
+                                <th> @lang(getModel() . '.time') </th>
+                                <th> @lang(getModel() . '.questions_count') </th>
+                                <th> @lang(getModel() . '.degree') </th>
                                 <th class="remove-when-print"> @lang('general.action') </th>
                             </tr>
                         </thead>

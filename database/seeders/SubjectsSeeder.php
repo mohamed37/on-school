@@ -17,7 +17,7 @@ class SubjectsSeeder extends Seeder
      */
     public function run()
     {
-        $users   = User::select('id')->inRandomOrder()->limit(6)->get();
+        $users   = User::select('id')->whereRoleIs('teacher')->get();
         $faker = Factory::create();
         foreach ($users as $user) {
             Subject::create([
