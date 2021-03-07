@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Exam;
 use App\Models\Subject;
 use App\Models\User;
-use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class ExamsSeeder extends Seeder
@@ -23,6 +22,8 @@ class ExamsSeeder extends Seeder
                 'user_id'       => $user->id,
                 'subject_id'    => Subject::select('id')->inRandomOrder()->first()->id,
                 'time'          => rand(60, 180),
+                'degree'        => rand(60, 180),
+                'name'          => 'Exam_' . $user->id,
             ]);
         }
     }

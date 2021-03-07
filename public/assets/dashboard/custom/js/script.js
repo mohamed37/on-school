@@ -197,9 +197,13 @@ $(function() {
             processData: false,
             contentType: false,
             success: function(data, textStatus, jqXHR) {
-                $('.modal').modal("hide");
-                toastr.success(data.message, data.title);
-                rows();
+                if (data.redirect) {
+                    $('.modal').modal("show").find('#form_body').empty().append(data.redirect);
+                } else {
+                    toastr.success(data.message, data.title);
+                    $('.modal').modal("hide");
+                    rows();
+                }
             },
             error: function (jqXhr, textStatus, errorMessage) {
                 if(jqXhr.readyState == 0) { return false; }

@@ -95,15 +95,6 @@
             </li>
             <!-- END SUBJECTS LINK -->
 
-            <!-- BEGIN ROOMS LINK -->
-            <li class="nav-item {{ active('rooms') }}">
-                <a href="{{ route('dashboard.rooms.index') }}">
-                    <i class="fa fa-door-closed"></i>
-                    <span class="menu-title" data-i18n="nav.invoice.main">@lang('general.rooms')</span>
-                </a>
-            </li>
-            <!-- END ROOMS LINK -->
-
             <!-- BEGIN EXAMS LINK -->
             <li class="nav-item {{ active('exams') }}">
                 <a href="{{ route('dashboard.exams.index') }}">

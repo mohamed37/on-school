@@ -27,12 +27,11 @@ class AbsencesController extends BackEndController
         try {
             DB::BeginTransaction();
             $row = Absence::create($request->all());
-            $view = view('dashboard.absences.row', compact('row'))->render();
             DB::Commit();
-            return response()->json([
-                'view' => $view, 'message' => __('alerts.record_created'),
-                'title' => __('alerts.created')
-            ]);
+            if ($row) {
+                $this->count += 1;
+                return $this->successMessage('record_created', 'created');
+            }
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 404);
         }
@@ -46,10 +45,10 @@ class AbsencesController extends BackEndController
                 DB::beginTransaction();
                 foreach ($absences as $absence) {
                     $absence->delete();
-                    $this->count -= 1;
                 }
                 DB::commit();
-                return response()->json(['message' => __('alerts.destroyed_successfully'), 'title' => __('alerts.destroy')]);
+                $this->count -= count((array) $request['id']);
+                return $this->successMessage('destroyed_successfully', 'destroy');
             }
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 500);

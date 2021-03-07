@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
             'age'               => $faker->numberBetween(20, 80),
             'email_verified_at' => now(),
             'remember_token'    => Str::random(10),
-        ])->attachRole('super_admin');
+        ])->attachRoles(['super_admin', 'teacher']);
 
         for ($i = 0; $i < 20; $i++) {
             User::create([

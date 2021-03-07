@@ -13,24 +13,20 @@ class SalariesController extends BackEndController
 {
     public function __construct(Salary $model)
     {
-
         $columns = ['salary', 'deduction', 'incentives', 'rate', 'note'];
         parent::__construct($model, $columns);
     } // End of Construct Method
 
     public function append()
     {
-        return [
-            'users' => User::withOutAuth()->get(),
-        ];
+        return ['users' => User::withOutAuth()->get(),];
     } // End of Append Method
 
 
     /*
-     absence => [1 , 0]
+        absence => [1 , 0]
 
     */
-
     public function getAbsence(SalariesRequest $request)
     {
         $users = Absence::where('user_id', $request->user_id)->where('absence', 1)->get();

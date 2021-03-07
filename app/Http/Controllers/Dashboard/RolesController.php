@@ -29,8 +29,7 @@ class RolesController extends BackEndController
             DB::commit();
             if ($row) {
                 $this->count += 1;
-                $view = view('dashboard.roles.row', compact('row'))->render();
-                return response()->json(['view' => $view, 'message' => __('alerts.record_created'), 'title' => __('alerts.created'), 'id' => $row->id]);
+                return $this->successMessage('record_created', 'created');
             }
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 404);
@@ -51,16 +50,8 @@ class RolesController extends BackEndController
             else
                 $role->detachPermissions();
 
-            $view = view('dashboard.roles.row', ['row' => $role])->render();
             DB::commit();
-            return response()->json([
-                'view'      => $view,
-                'message'   => __('alerts.record_updated'),
-                'title'     => __('alerts.updated'),
-                'id'        => $role->id,
-                'type'      => 'update',
-                'count'     => Role::count(),
-            ]);
+            return $this->successMessage('record_updated', 'updated');
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 404);
         }
@@ -74,10 +65,10 @@ class RolesController extends BackEndController
                 DB::beginTransaction();
                 foreach ($roles as $role) {
                     $role->delete();
-                    $this->count -= 1;
                 }
                 DB::commit();
-                return response()->json(['message' => __('alerts.destroyed_successfully'), 'title' => __('alerts.destroy')]);
+                $this->count -= count((array) $request['id']);
+                return $this->successMessage('destroyed_successfully', 'destroy');
             }
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 500);

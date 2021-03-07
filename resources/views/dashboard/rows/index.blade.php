@@ -18,7 +18,6 @@
                                 <tr>
                                     <th class="remove-when-print"> <input type="checkbox" id="check-all"> </th>
                                     <th> @lang('rows.name') </th>
-                                    <th> @lang('rows.rooms_count') </th>
                                     <th> @lang('rows.subjects_count') </th>
                                     <th class="remove-when-print"> @lang('general.action') </th>
                                 </tr>

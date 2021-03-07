@@ -27,6 +27,8 @@ class ExamsRequest extends FormRequest
             'user_id'     => 'required|exists:users,id',
             'subject_id'  => 'required|exists:subjects,id',
             'time'        => 'required|integer|between:60,180',
+            'degree'      => 'required|integer|between:10,180',
+            'name'        => 'required|min:3|max:199|string',
         ];
     }
 }

@@ -16,11 +16,6 @@ class Row extends Model
     *************************** Begin RELATIONS Area ****************************
     *****************************************************************************
     */
-    public function rooms()
-    {
-        return $this->hasMany(Room::class, 'row_id', 'id');
-    } // To Return The Relation Between Class and Rooms
-
     public function subjects()
     {
         return $this->hasMany(Subject::class, 'row_id', 'id');

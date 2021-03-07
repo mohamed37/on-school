@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AbsenceSeeder::class);
         $this->call(SalarySeeder::class);
         $this->call(RowsSeeder::class);
-        $this->call(RoomsSeeder::class);
         $this->call(SubjectsSeeder::class);
         $this->call(ExamsSeeder::class);
         $this->call(QuestionsSeeder::class);

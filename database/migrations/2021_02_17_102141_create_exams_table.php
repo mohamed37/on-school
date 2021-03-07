@@ -18,6 +18,8 @@ class CreateExamsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('subject_id');
             $table->unsignedInteger('time')->default(120);
+            $table->unsignedInteger('degree')->default(0);
+            $table->string('name');
             $table->timestamps();
 
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

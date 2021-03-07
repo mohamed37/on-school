@@ -33,11 +33,7 @@ class PermissionsController extends BackEndController
             DB::commit();
             if ($row) {
                 $this->count += 1;
-                $view = view('dashboard.permissions.row', compact('row'))->render();
-                return response()->json([
-                    'view' => $view, 'message' => __('alerts.record_created'), 'title' => __('alerts.created'),
-                    'id' => $row->id
-                ]);
+                return $this->successMessage('record_created', 'created');
             }
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 404);
@@ -56,16 +52,8 @@ class PermissionsController extends BackEndController
                 'display_name' => ucfirst($request['action']) . ' ' . Str::plural(ucfirst($request['name'])),
                 'description'  => $request['description'],
             ]);
-            $view = view('dashboard.permissions.row', ['row' => $permission])->render();
             DB::commit();
-            return response()->json([
-                'view' => $view,
-                'message' => __('alerts.record_updated'),
-                'title' => __('alerts.updated'),
-                'id' => $permission->id,
-                'type' => 'update',
-                'count' => Permission::count(),
-            ]);
+            return $this->successMessage('updated_successfully', 'update');
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 404);
         }
@@ -79,11 +67,10 @@ class PermissionsController extends BackEndController
                 DB::beginTransaction();
                 foreach ($permissions as $permission) {
                     $permission->delete();
-                    $this->count -= 1;
                 }
                 DB::commit();
-                return response()->json(['message' => __('alerts.destroyed_successfully'), 'title' => __('alerts.destroy'), 'count'
-                => $this->count]);
+                $this->count -= count((array) $request['id']);
+                return $this->successMessage('destroyed_successfully', 'destroy');
             }
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 500);

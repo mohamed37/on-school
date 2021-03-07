@@ -24,9 +24,8 @@ class QuestionsSeeder extends Seeder
                 Question::create([
                     'exam_id'  => $exam->id,
                     'question' => $faker->sentence(),
-                    'answers'  => serialize($faker->words($nb = 4, $asText = false)),
-                    'correct'  => $faker->word(),
-                    'degree'   => $faker->numberBetween(1, 5),
+                    'answers'  => 'a, b, c',
+                    'correct'  => 'b',
                     'attach'   => $faker->image(public_path('uploads/images/questions'), 150, 150, 'questions', false),
 
                 ]);

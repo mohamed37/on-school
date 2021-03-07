@@ -44,10 +44,10 @@ class LogsController extends Controller
                 DB::beginTransaction();
                 foreach ($logs as $log) {
                     $log->delete();
-                    $this->count -= 1;
                 }
                 DB::commit();
-                return response()->json(['message' => __('alerts.destroyed_successfully'), 'title' => __('alerts.destroy')]);
+                $this->count -= count((array) $request['id']);
+                return $this->successMessage('destroyed_successfully', 'destroy');
             }
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 500);

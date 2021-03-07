@@ -19,8 +19,7 @@ class CreateQuestionsTable extends Migration
             $table->text('question');
             $table->text('answers');
             $table->string('correct');
-            $table->string('degree');
-            $table->text('attach');
+            $table->text('attach')->nullable();
             $table->timestamps();
 
             // $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade')->onUpdate('cascade');

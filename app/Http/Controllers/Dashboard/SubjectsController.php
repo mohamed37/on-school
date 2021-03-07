@@ -30,10 +30,11 @@ class SubjectsController extends BackEndController
             return  response()->json(['errors' => ['subject' => [__('subjects.exists')]]], 422);
 
         $row = Subject::create($request->all());
-        $this->count += 1;
-        $view = view('dashboard.subjects.row', compact('row'))->render();
         DB::commit();
-        return response()->json(['view' => $view, 'message' => __('alerts.record_created'), 'title' => __('alerts.created'), 'id' => $row->id]);
+        if ($row) {
+            $this->count += 1;
+            return $this->successMessage('record_created', 'created');
+        }
     } // End of Store Subject
 
     public function update(SubjectsRequest $request, Subject $subject)
@@ -43,16 +44,8 @@ class SubjectsController extends BackEndController
             if ($this->is_exists($request['subject'], $request['row_id'], $request['semester'], $subject->id) > 0)
                 return  response()->json(['errors' => ['subject' => [__('subjects.exists')]]], 422);
             $subject->update($request->all());
-            $view = view('dashboard.users.row', ['row' => $subject])->render();
             DB::commit();
-            return response()->json([
-                'view'      => $view,
-                'message'   => __('alerts.record_updated'),
-                'title'     => __('alerts.updated'),
-                'id'        => $subject->id,
-                'type'      => 'update',
-                'count'     => Subject::count()
-            ]);
+            return $this->successMessage('record_updated', 'updated');
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 404);
         }
@@ -66,10 +59,10 @@ class SubjectsController extends BackEndController
                 DB::beginTransaction();
                 foreach ($subjects as $subject) {
                     $subject->delete();
-                    $this->count -= 1;
                 }
                 DB::commit();
-                return response()->json(['message' => __('alerts.destroyed_successfully'), 'title' => __('alerts.destroy')]);
+                $this->count -= count((array) $request['id']);
+                return $this->successMessage('destroyed_successfully', 'destroy');
             }
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 500);

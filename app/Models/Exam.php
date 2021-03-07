@@ -10,8 +10,8 @@ class Exam extends Model
     use HasFactory;
 
     protected $tables = ['exams'];
-    protected $guard = ['id'];
-    protected $fillable = ['user_id', 'subject_id', 'time'];
+    protected $guard  = ['id'];
+    protected $fillable   = ['name', 'user_id', 'subject_id', 'time', 'degree'];
 
     /*
     *****************************************************************************

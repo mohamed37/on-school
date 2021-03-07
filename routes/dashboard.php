@@ -116,18 +116,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::resource('rows', 'RowsController')->except(['destroy']);
         // END ROUTES Row MODE
 
-        // BEGIN ROUTES Room MODEL
-        Route::group(['prefix' => 'rooms', 'as' => 'rooms.'], function () {
-            // ROUTE TO DESTROY THE ROOMS
-            Route::post('destroy', 'RoomsController@destroy')->name('destroy');
-        }); // END OF [ Room ] PREFIX
-        Route::resource('rooms', 'RoomsController')->except(['destroy']);
-        // END ROUTES Room MODE
-
         // BEGIN ROUTES EXAMS MODEL
         Route::group(['prefix' => 'exams', 'as' => 'exams.'], function () {
             // ROUTE TO DESTROY THE EXAMS
             Route::post('destroy', 'ExamsController@destroy')->name('destroy');
+            Route::post('create.questions', 'ExamsController@questions')->name('create.questions');
         }); // END OF [ EXAMS ] PREFIX
         Route::resource('exams', 'ExamsController')->except(['destroy']);
         // END ROUTES EXAMS MODE

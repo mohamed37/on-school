@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Exam;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -22,39 +21,59 @@ class BackEndController extends Controller
 
     private function rows($request)
     {
-        $paginate = (int) $request['record'] ?? PAGINATE_NUMBERT;
-        $sort     = $request['sort'] ?? 'id';
-        $order    = $request['order'] ?? 'desc';
+        try {
+            $paginate = (int) $request['record'] ?? PAGINATE_NUMBERT;
+            $sort     = $request['sort'] ?? 'id';
+            $order    = $request['order'] ?? 'desc';
+            $rows = $this->model::search($request)->orderBy($sort, $order)->paginate($paginate);
 
-        $rows = $this->model::search($request)->orderBy($sort, $order)->paginate($paginate);
-        $view = view('dashboard.includes.table._rows', compact('rows'))->render();
-        return response()->json(['view' => $view, 'count' => $this->count]);
+            $view = view('dashboard.includes.table._rows', compact('rows'))->render();
+            return response()->json(['view' => $view, 'count' => $this->count]);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 404);
+        }
     } // End of Show Rows
 
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-            return $this->rows($request);
-        } // end of if
-        $count   = $this->model->count();
-        $columns = $this->columns;
-        return view($this->getView('index'), compact('columns'))->with($this->append());
+        try {
+            if ($request->ajax())
+                return $this->rows($request);
+
+            $count   = $this->model->count();
+            $columns = $this->columns;
+            return view($this->getView('index'), compact('columns'))->with($this->append());
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 404);
+        }
     } // End of Index Show Row
 
     public function create()
     {
-        return response()->json(view('dashboard.includes.form._create')->with($this->append())->render());
+        try {
+            return response()->json(view('dashboard.includes.form._create')->with($this->append())->render());
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 404);
+        }
     } // End of Create New Row
 
     public function edit($id)
     {
-        return response()->json(view('dashboard.includes.form._edit', ['row' => $this->model->findOrFail($id)])->with($this->append())->render());
+        try {
+            return response()->json(view('dashboard.includes.form._edit', ['row' => $this->model->findOrFail($id)])->with($this->append())->render());
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 404);
+        }
     } // End of Edit Row
 
     public function show($id)
     {
-        $row = $this->model->find($id)->first();
-        return $row;
+        try {
+            $row = $this->model->findOrFail($id);
+            return $row;
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 404);
+        }
     } // End of Index Show Row
 
     public function getImport()
@@ -76,4 +95,9 @@ class BackEndController extends Controller
     {
         return [];
     }
+
+    protected function successMessage(string $message, string $title)
+    {
+        return response()->json(['message' => __('alerts.' . $message), 'title' => __('alerts.' . $title),]);
+    } // Return The Success Message
 }

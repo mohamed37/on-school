@@ -17,6 +17,7 @@
                         <thead>
                             <tr>
                                 <th class="remove-when-print"> <input type="checkbox" id="check-all"> </th>
+                                <th> @lang(getModel() . '.name') </th>
                                 <th> @lang('subjects.subject') </th>
                                 <th> @lang(getModel() . '.time') </th>
                                 <th> @lang(getModel() . '.questions_count') </th>
@@ -32,7 +33,8 @@
     </div>
 
     <div class="col-md-4">
-        <div style="position: fixed; width: 25%">
+        {{-- <div style="position: fixed; width: 25%"> --}}
+        <div>
             {{-- Form Create Blade --}}
             @include('dashboard.includes.form._create')
         </div>

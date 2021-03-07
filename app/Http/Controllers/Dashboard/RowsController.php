@@ -21,12 +21,11 @@ class RowsController extends BackEndController
         try {
             DB::BeginTransaction();
             $row  = Row::create($request->all());
-            $view = view('dashboard.rows.row', compact('row'))->render();
             DB::Commit();
-            return response()->json([
-                'view' => $view, 'message' => __('alerts.record_created'),
-                'title' => __('alerts.created')
-            ]);
+            if ($row) {
+                $this->count += 1;
+                return $this->successMessage('record_created', 'created');
+            }
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 404);
         }
@@ -37,15 +36,8 @@ class RowsController extends BackEndController
         try {
             DB::beginTransaction();
             $row->update($request->all());
-
-            $view = view('dashboard.rows.row', ['row' => $row])->render();
             DB::commit();
-            return response()->json([
-                'view'      => $view,
-                'message'   => __('alerts.record_updated'),
-                'title'     => __('alerts.updated'),
-                'type'      => 'update',
-            ]);
+            return $this->successMessage('record_updated', 'updated');
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 404);
         }
@@ -60,13 +52,13 @@ class RowsController extends BackEndController
                 foreach ($rows as $row) {
                     if (($row->subjects->count() == 0) && ($row->rooms->count() == 0)) {
                         $row->delete();
-                        $this->count -= 1;
                     } else {
                         return response()->json(['message' => __('alerts.cant_delete'), 'title' => __('alerts.warning'), 'type' => 'warning']);
                     }
                 }
                 DB::commit();
-                return response()->json(['message' => __('alerts.destroyed_successfully'), 'title' => __('alerts.destroy')]);
+                $this->count -= count((array) $request['id']);
+                return $this->successMessage('destroyed_successfully', 'destroy');
             }
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 500);
